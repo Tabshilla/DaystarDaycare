@@ -1,0 +1,77 @@
+{% extends "DaystarApp/base.html" %}
+{% load static %}
+
+
+{% block content  %}
+
+<style>
+  h1 {
+      color: #2c3e50; /* Professional blue-gray color */
+      text-align: center;
+      font-family: 'Arial', sans-serif; /* Clean and professional font */
+      margin-bottom: 20px;
+  }
+
+  .table th, .table td {
+      padding: 12px; /* Adjust padding for readability */
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+  }
+
+  .table thead th {
+      background-color: #34495e; /* Dark blue-gray background color */
+      color: white; /* White text color for contrast */
+      font-weight: bold;
+      text-transform: uppercase; /* Uppercase for professional look */
+  }
+
+  .table tbody tr:nth-child(even) {
+      background-color: #f2f2f2; /* Light gray background for alternate rows */
+  }
+
+  .table tbody tr:hover {
+      background-color: #e0e0e0; /* Slightly darker gray on hover */
+  }
+</style>
+</head>
+<body>
+
+<h1>Payment List</h1>
+<div class="container-fluid">
+  <table class="table" style="width: 100%; border-collapse: collapse;">
+      <thead>
+          <tr>
+              <th>#</th>
+              <th scope="col">S_name</th>
+              <th scope="col">Payment Type</th>
+              <th scope="col">Payment Date</th>
+              <th scope="col">Babies Assigned</th>
+              <th scope="col">Amount</th>
+              <th>Status</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for Payment in payment_list %}
+          <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ Payment.S_name }}</td>
+              <td>{{ Payment.payment_type }}</td>
+              <td>{{ Payment.date }}</td>
+              <td>{{ Payment.babies_assigned }}</td>
+              <td>{{ Payment.amount }}</td>
+              <td class="action-links">
+                <a href="{% url 'edit_payment' Payment.id %}">Edit</a>
+               
+            </td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+{% endblock  %}
+
+
+

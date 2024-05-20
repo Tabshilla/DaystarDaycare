@@ -1,0 +1,47 @@
+{% extends "DaystarApp/base.html" %}
+{% block content  %}
+
+
+<h1 style="color: blue; text-align: center;">LIST OF DOLLS</h1>
+<div class="container-fluid">
+
+  <table class="table" style="width: 100%; border-collapse: collapse;">
+    <thead style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">
+      <tr>
+        <th>#</th>
+        <th scope="col">c_doll</th>
+        <th scope="col">doll_name</th>
+        <th scope="col">doll_number</th>
+        <th scope='col'>quantity</th>
+        <th scope='col'>issued_quantity</th>
+        <th scope='col'>received_quantity</th>
+        <th scope='col'>unit_price</th>
+        <th scope='col'>date</th>
+        <th scope='col'>ACTION</th>
+
+      </tr>
+    </thead>
+    <tbody style="background-color: #ddd;">
+        {% for Doll in dolls %}
+      <tr>
+        <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">{{ forloop.counter }} </td>
+        <td>{{ Doll.c_doll }}</td>
+        <td>{{ Doll.doll_name }}</td>
+        <td>{{ Doll.doll_number }}</td>
+        <td>{{ Doll.quantity }}</td>
+        <td>{{ Doll.issued_quantity }}</td>
+        <td>{{ Doll.received_quantity }}</td>
+        <td>{{ Doll.unit_price }}</td>
+        <td>{{ Doll.date }}</td>
+        <td>
+      
+          <a href="{% url 'issue_item' Doll.id %}" class="btn btn-info">Sell Doll</a>
+          <a href="{% url 'add_to_stock' Doll.id %}" class="btn btn-primary">Add Stock</a>
+          {% comment %} <a href="{% url 'edit_doll' Doll.id %}" class="btn btn-warning">Edit</a> {% endcomment %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock  %}

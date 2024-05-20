@@ -1,0 +1,88 @@
+{% extends "DaystarApp/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    h1 {
+        color: #2c3e50; /* Professional blue-gray color */
+        text-align: center;
+        font-family: 'Arial', sans-serif; /* Clean and professional font */
+        margin-bottom: 20px;
+    }
+
+    .table th, .table td {
+        padding: 12px; /* Adjust padding for readability */
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table thead th {
+        background-color: #34495e; /* Dark blue-gray background color */
+        color: white; /* White text color for contrast */
+        font-weight: bold;
+        text-transform: uppercase; /* Uppercase for professional look */
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #f2f2f2; /* Light gray background for alternate rows */
+    }
+
+    .table tbody tr:hover {
+        background-color: #e0e0e0; /* Slightly darker gray on hover */
+    }
+
+    .action-links a {
+        margin-right: 10px; /* Space between action links */
+        color: #2980b9; /* Professional blue color */
+    }
+
+    .action-links a:hover {
+        text-decoration: underline; /* Underline on hover */
+    }
+</style>
+<body>
+
+<h1>List of Babies Registered</h1>
+<div class="container-fluid">
+    <table class="table" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th scope="col">B_name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Location</th>
+                <th scope="col">Mother's Name</th>
+                <th scope="col">Father's Name</th>
+                <th scope="col">Mother's Phone</th>
+                <th scope="col">Father's Phone</th>
+                <th scope="col">Baby Number</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Baby in allbabies %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ Baby.B_name }}</td>
+                <td>{{ Baby.age }}</td>
+                <td>{{ Baby.gender }}</td>
+                <td>{{ Baby.location }}</td>
+                <td>{{ Baby.mothers_name }}</td>
+                <td>{{ Baby.fathers_name }}</td>
+                <td>{{ Baby.mothers_phone }}</td>
+                <td>{{ Baby.fathers_phone }}</td>
+                <td>BB-0{{ Baby.B_number }}</td>
+                <td class="action-links">
+                    <a href="{% url 'edit' Baby.id %}">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+{% endblock %}

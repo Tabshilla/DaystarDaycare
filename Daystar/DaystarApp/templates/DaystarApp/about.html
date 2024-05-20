@@ -1,0 +1,72 @@
+<html>
+<body>
+    <style>
+        /* Custom CSS styles */
+        .card {
+          margin-bottom: 20px;
+          border: none;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          transition: box-shadow 0.3s ease-in-out;
+        }
+    
+        .card:hover {
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+    
+        .card-title {
+          color: #333;
+        }
+    
+        .card-text {
+          color: #666;
+        }
+    
+        .btn-primary {
+          background-color: #6198a3;
+          border-color: cyan;
+        }
+    
+        .btn-primary:hover {
+          background-color: #66c2ff;
+          border-color: #66c2ff;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">About Us</h5>
+                <p class="card-text">At Kabalagala Daycare, we believe in the transformative power of early childhood education. Nestled in the heart of Kabalagala, our vibrant and nurturing environment is designed to inspire young minds, encourage exploration, and ignite a lifelong love for learning.</p>
+                <p class="card-text">We are dedicated to providing a safe, inclusive, and stimulating space where children can develop socially, emotionally, and intellectually. Through play-based learning, individualized attention, and a supportive community, we strive to empower each child to reach their full potential.</p>
+                <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Vision</h5>
+                <p class="card-text">Our vision is to be the beacon of excellence in early childhood education in Kabalagala and beyond. We aspire to foster a community where every child feels valued, every parent feels supported, and every educator feels inspired.</p>
+                <p class="card-text">Through innovative programs, personalized attention, and a dedication to holistic development, we aim to shape confident, creative, and compassionate individuals prepared to make a positive impact on the world.</p>
+                <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Mission</h5>
+                <p class="card-text">Our mission at Kabalagala Daycare is to provide a safe, inclusive, and stimulating environment where children thrive emotionally, socially, and intellectually.</p>
+                <p class="card-text">We are committed to partnering with families to cultivate a foundation of curiosity, resilience, and compassion in every child, empowering them to reach their full potential.</p>
+                <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</body>
+</html>

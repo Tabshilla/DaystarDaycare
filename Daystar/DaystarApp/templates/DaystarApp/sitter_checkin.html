@@ -1,0 +1,78 @@
+{% extends "DaystarApp/base.html" %}
+{% block content %}
+
+
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #6198a3;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 2em;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    .form-control {
+      border-radius: 5px;
+      border: 1px solid #76c5d3;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary {
+      background-color: #6198a3;
+      border-color: #6198a3;
+      width: 100%;
+      padding: 10px;
+      font-size: 1.1em;
+      margin-top: 10px;
+    }
+
+    .btn-primary:hover {
+      background-color: #66c2ff;
+      border-color: #66c2ff;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #6198a3;
+    }
+
+    .back-link:hover {
+      text-decoration: none;
+      color: #66c2ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Check In a Sitter</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Check In</button>
+    </form>
+    <a href="{% url 'home' %}" class="back-link">Back to Home</a>
+  </div>
+</body>
+</html>
+{% endblock content %}

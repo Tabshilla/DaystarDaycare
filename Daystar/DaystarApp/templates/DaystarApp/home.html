@@ -1,0 +1,125 @@
+{% extends "DaystarApp/base.html" %}
+
+{% block content %}
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5; /* Light gray background */
+  }
+
+  .card {
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-title {
+    color: #333;
+  }
+
+  .card-text {
+    color: #666;
+  }
+
+  .btn-primary {
+    background-color: #6198a3; /* Blue color */
+    border-color: cyan;
+    color: white; /* Text color */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s; /* Smooth transition */
+  }
+
+  .btn-primary:hover {
+    background-color: #66c2ff; /* Lighter blue color on hover */
+    border-color: #66c2ff;
+  }
+
+  .icon {
+    margin-right: 10px; /* Spacing between icon and text */
+  }
+</style>
+
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Add Babies</h5>
+          <p class="card-text">Grow your babies community by adding babies easily.</p>
+          <a href="{% url 'addbabies' %}" class="btn btn-primary">
+            <i class="fas fa-baby icon"></i> Add Babies
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Add Sitters</h5>
+          <p class="card-text">Add members to your team swiftly.</p>
+          <a href="{% url 'addsitters' %}" class="btn btn-primary">
+            <i class="fas fa-user icon"></i> Add Sitters
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Check in Baby</h5>
+          <p class="card-text">Add members to your team swiftly.</p>
+          <a href="{% url 'baby_checkin' %}" class="btn btn-primary">
+            <i class="fas fa-user icon"></i> Check in Baby
+          </a>
+        </div>
+      </div>
+    </div>    
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Check out Baby</h5>
+          <p class="card-text">Add members to your team swiftly.</p>
+          <a href="{% url 'baby_checkout' %}" class="btn btn-primary">
+            <i class="fas fa-user icon"></i>Check out Baby
+          </a>
+        </div>
+      </div>
+    </div>    
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Check In Sitters</h5>
+          <p class="card-text">Add members to your team swiftly.</p>
+          <a href="{% url 'sitter_checkin' %}" class="btn btn-primary">
+            <i class="fas fa-user icon"></i> Check In Sitters
+          </a>
+        </div>
+      </div>
+    </div>    
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Check Out Sitters</h5>
+          <p class="card-text">Add members to your team swiftly.</p>
+          <a href="{% url 'sitter_checkout' %}" class="btn btn-primary">
+            <i class="fas fa-user icon"></i> Check Out Sitters
+          </a>
+        </div>
+      </div>
+    </div>    
+        
+
+  </div>
+</div>
+</body>
+</html>
+  {% endblock  %}
+

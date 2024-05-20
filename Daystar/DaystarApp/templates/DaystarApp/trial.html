@@ -1,0 +1,128 @@
+
+{% extends 'DaystarApp/base.html' %}
+
+{% block content %}
+<style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    footer {
+      background-color: black;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      width: 100%;
+    }
+    .jumbotron {
+      background-color: #6198a3;
+      color: white;
+      padding: 2rem 1rem;
+      margin-bottom: 2rem;
+      border-radius: 0.3rem;
+    }
+
+    .table {
+      background-color: #fff;
+      border: 1px solid #dee2e6;
+    }
+
+    .table th, .table td {
+      border-top: 1px solid #dee2e6;
+    }
+
+    .table thead th {
+      background-color: #76c5d3;
+      color: white;
+    }
+
+    .btn-primary {
+      background-color: #6198a3;
+      border-color: #6198a3;
+    }
+
+    .btn-primary:hover {
+      background-color: #66c2ff;
+      border-color: #66c2ff;
+    }
+
+    .btn-secondary {
+      background-color: #76c5d3;
+      border-color: #76c5d3;
+    }
+
+    .btn-secondary:hover {
+      background-color: #66c2ff;
+      border-color: #66c2ff;
+    }
+
+    .btn-success {
+      background-color: #5cb85c;
+      border-color: #5cb85c;
+    }
+
+    .btn-info {
+      background-color: #5bc0de;
+      border-color: #5bc0de;
+    }
+  </style>
+<div class="jumbotron">
+    
+    <p class="lead">Number of children present: <span class="badge badge-primary">{{ children_present }}</span></p>
+    <a class="btn btn-secondary btn-lg" href="{% url 'baby_checkin' %}" role="button">Check In a Baby</a>
+    <a class="btn btn-secondary btn-lg" href="{% url 'sitter_checkin' %}" role="button">Check In a Sitter</a>
+    <a class="btn btn-success btn-lg" href="{% url 'baby_checkout' %}" role="button">Check Out a Baby</a>
+    <a class="btn btn-success btn-lg" href="{% url 'sitter_checkout' %}" role="button">Check Out a Sitter</a>
+</div>
+
+<h3>Babies Status</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Baby</th>
+            <th>Status</th>
+            <th>Time In</th>
+            <th>Time Out</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for status in babies_status %}
+        <tr>
+            <td>{{ status.baby }}</td>
+            <td>{{ status.status }}</td>
+            <td>{{ status.timeIn }}</td>
+            <td>{{ status.timeOut|default:"-" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Sitters Status</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Sitter</th>
+            <th>Status</th>
+            <th>Time In</th>
+            <th>Time Out</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for status in sitters_status %}
+        <tr>
+            <td>{{ status.sitter }}</td>
+            <td>{{ status.status }}</td>
+            <td>{{ status.timeIn }}</td>
+            <td>{{ status.timeOut|default:"-" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

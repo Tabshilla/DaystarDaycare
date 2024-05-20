@@ -1,0 +1,115 @@
+{% extends "DaystarApp/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+  body {
+      background-color: #e0f7fa;
+      font-family: Arial, sans-serif;
+  }
+  .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border: 2px solid #00bcd4;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  h3 {
+      color: #00796b;
+      text-align: center;
+      margin-bottom: 20px;
+  }
+  .alert {
+      max-width: 600px;
+      margin: 20px auto;
+      border-radius: 10px;
+  }
+  .alert-link {
+      color: #00796b;
+      font-weight: bold;
+  }
+  .card {
+      border-radius: 10px;
+  }
+  .card-header {
+      background-color: #00bcd4;
+      color: white;
+      font-weight: bold;
+      border-radius: 10px 10px 0 0;
+  }
+  .card-body {
+      padding: 20px;
+  }
+  .form-group {
+      margin-bottom: 15px;
+  }
+  .form-group label {
+      color: #00796b;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      padding: 10px;
+      font-size: 16px;
+      color: #333;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: #00bcd4;
+      box-shadow: 0 0 5px rgba(0,188,212,0.5);
+      outline: none;
+  }
+  .btn-primary {
+      background-color: #00bcd4;
+      border-color: #00bcd4;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+  }
+  .btn-primary:hover {
+      background-color: #008c9e;
+      border-color: #008c9e;
+  }
+  .btn-secondary {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+  }
+</style>
+
+<body>
+
+<h3 class="text-center m-4">Update Sitter</h3>
+{% if success %}
+<div class="alert alert-success" role="alert">
+  The Sitter is updated successfully
+  <a href= "{% url 'home' %}" class="alert-link">Go to Home Page</a>
+</div>
+{% else %}
+<div class='row justify-content-center'>
+  <div class='col-md-6'>
+      <div class="card bg-light mb-3">
+          <div class="card-header">
+              <i class="fa-solid fa-pen-to-square fa-lg"></i> Update Sitters Records
+          </div>
+          <div class="card-body">
+              <form action="" method="POST">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit" class="btn btn-primary">Update</button>
+                  <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

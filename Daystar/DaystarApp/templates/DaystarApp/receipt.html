@@ -1,0 +1,43 @@
+{% extends "DaystarApp/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h1 style="color: blue; text-align: center;">LIST OF DOLLS SOLD</h1>
+<div class="container-fluid">
+
+<table class="table" style="width: 100%; border-collapse: collapse;">
+    <thead style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">
+        <tr>
+            <th>#</th>
+            <th scope="col">doll</th>
+            <th scope="col">payee</th>
+            <th scope="col">quantity_sold</th>
+            <th scope="col">amount_received</th>
+            <th scope="col">sale_date</th>
+            <th scope="col">unit_price</th>
+            <th scope="col">ACTION</th>
+        </tr>
+    </thead>
+    <tbody style="background-color: #ddd;">
+        {% for Baby in sales %}
+        <tr>
+            <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">{{ forloop.counter }} </td>
+            <td>{{ Baby.doll }}</td>
+            <td>{{ Baby.payee }}</td>
+            <td>{{ Baby.quantity_sold }}</td>
+            <td>{{ Baby.amount_received }}</td>
+            <td>{{ Baby.sale_date }}</td>
+            <td>{{ Baby.unit_price }}</td>
+            <td>
+                <a href="{% url 'receipt_detail' Baby.id %}" class="btn btn-info">Receipt Detail</a>
+               
+            </td>
+          
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% load static %}
+
+
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #76c5d3;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      display: flex;
+      width: 90%;
+      max-width: 1200px;
+      height: 80%;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color:#76c5d3;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+
+    .welcome-text {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .welcome-text h1 {
+      color: #333;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .welcome-text p {
+      color: #666;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .btn-primary {
+      background-color: #6198a3;
+      border-color:  cyan;
+      color:  white;
+      font-size: 18px;
+      padding: 10px 20px;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #66c2ff;
+      border-color: #66c2ff;
+    }
+  </style>
+<body>
+  <div class="container">
+    <div class="image-container">
+      <img src="{% static 'DaystarLogo.png' %}" alt="Daystar Image">
+    </div>
+    <div class="welcome-text">
+      <h1>Welcome Admin</h1>
+      <p>Click on Get Started</p>
+      <a href="{% url 'login' %}" class="btn btn-primary">Get Started</a>
+    </div>
+  </div>
+</body>
+</html>

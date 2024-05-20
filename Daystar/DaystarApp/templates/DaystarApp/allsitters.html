@@ -1,0 +1,93 @@
+{% extends "DaystarApp/base.html" %}
+{% block content  %}
+
+
+<style>
+  h1 {
+      color: #2c3e50; /* A professional blue-gray color */
+      text-align: center;
+      font-family: 'Arial', sans-serif; /* A clean and professional font */
+      margin-bottom: 20px;
+  }
+
+  .table th, .table td {
+      padding: 12px; /* Adjust the padding for better readability */
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+  }
+
+  .table thead th {
+      background-color: #34495e; /* A dark blue-gray background color */
+      color: white; /* White text color for contrast */
+      font-weight: bold;
+      text-transform: uppercase; /* Uppercase for a professional look */
+  }
+
+  .table tbody tr:nth-child(even) {
+      background-color: #f2f2f2; /* Light gray background for alternate rows */
+  }
+
+  .table tbody tr:hover {
+      background-color: #e0e0e0; /* Slightly darker gray on hover */
+  }
+
+  .action-links a {
+      margin-right: 10px; /* Add space between action links */
+      color: #2980b9; /* A professional blue color */
+  }
+
+  .action-links a:hover {
+      text-decoration: underline; /* Underline on hover for clarity */
+  }
+</style>
+</head>
+<body>
+
+<h1>List of Sitters Registered</h1>
+<div class="container-fluid">
+  <table class="table" style="width: 100%; border-collapse: collapse;">
+      <thead>
+          <tr>
+              <th>#</th>
+              <th scope="col">S_name</th>
+              <th scope="col">Gender</th>
+              <th scope="col">DOB</th>
+              <th scope="col">Location</th>
+              <th scope="col">Next of Kin</th>
+              <th scope="col">Recommender's Name</th>
+              <th scope="col">Religion</th>
+              <th scope="col">NIN</th>
+              <th scope="col">Education Level</th>
+              <th scope="col">Sitter Number</th>
+              <th scope="col">Contact</th>
+              <th>ACTION</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for Sitter in allsitters %}
+          <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ Sitter.S_name }}</td>
+              <td>{{ Sitter.gender }}</td>
+              <td>{{ Sitter.dob }}</td>
+              <td>{{ Sitter.location }}</td>
+              <td>{{ Sitter.next_of_kin }}</td>
+              <td>{{ Sitter.recommenders_name }}</td>
+              <td>{{ Sitter.religion }}</td>
+              <td>{{ Sitter.NIN }}</td>
+              <td>{{ Sitter.education_level }}</td>
+              <td>{{ Sitter.sitter_number }}</td>
+              <td>{{ Sitter.contact }}</td>
+              <td class="action-links">
+                  <a href="{% url 'edit_sitter' Sitter.id %}">Edit</a>
+                 
+              </td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "DaystarApp/base.html" %}
+{% load static %}
+{% block content %}
+
+<body>
+   
+    <style>
+        body {
+            background-color: #e0f7fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 2px solid #00bcd4;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        hr {
+            border-top: 1px solid #ccc;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            color: #00796b;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #00bcd4;
+            box-shadow: 0 0 5px rgba(0,188,212,0.5);
+            outline: none;
+        }
+        .btn-primary {
+            background-color: #00bcd4;
+            border-color: #00bcd4;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #008c9e;
+            border-color: #008c9e;
+        }
+
+        .styled-header {
+              color: #0056b3; /* Navy blue color */
+              font-size: 36px; /* Font size */
+              font-weight: bold; /* Bold font */
+              padding: 10px; /* Padding */
+              margin: 10px; /* Margin */
+              text-align: center; /* Center align the text */
+              font-family: 'Arial', sans-serif; /* Font family */
+              border-bottom: 4px solid #0056b3; /* Bottom border */
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow */
+        }
+ 
+    </style>
+
+    <div class="container">
+        <form action="" method="POST">
+            <div class="container">
+                <h1 class="styled-header">ADD STOCK</h1>
+              </div>
+            <hr>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+
+{% endblock %}

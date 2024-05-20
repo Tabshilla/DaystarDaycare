@@ -1,0 +1,85 @@
+{% extends "DaystarApp/base.html" %}
+{% block content  %}
+<style>
+  /* Add your custom CSS styles here */
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+
+  .container-fluid {
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  th, td {
+    white-space: nowrap;
+  }
+
+  .action-column {
+    text-align: center;
+  }
+</style>
+
+
+
+<h1>LIST OF BABIES PRESENT
+</h1>
+<div class="container-fluid">
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th scope="col">B_name</th>
+        <th scope="col">c_stay</th>
+        <th scope="col">brought_by</th>
+        <th scope="col">timeIn</th>
+        <th scope="col">timeOut</th>
+        <th scope='col'>ACTION</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for BabyAttendance in attendance_list %}
+      <tr>
+        <th scope="row">1</th>
+        <td>{{ BabyAttendance.B_name }}</td>
+        <td>{{ BabyAttendance.c_stay }}</td>
+        <td>{{ BabyAttendance.brought_by }}</td>
+        <td>{{ BabyAttendance.timeIn }}</td>
+        <td>{{ BabyAttendance.timeOut }}</td>
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

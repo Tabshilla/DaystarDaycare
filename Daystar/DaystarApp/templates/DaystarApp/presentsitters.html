@@ -1,0 +1,87 @@
+{% extends "DaystarApp/base.html" %}
+{% block content  %}
+<style>
+  /* Add your custom CSS styles here */
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+
+  .container-fluid {
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  th, td {
+    white-space: nowrap;
+  }
+
+  .action-column {
+    text-align: center;
+  }
+</style>
+
+
+
+
+
+<h1>LIST OF SITTERS PRESENT
+</h1>
+<div class="container-fluid">
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th scope="col">S_name</th>
+        <th scope="col">timeIn</th>
+        <th scope="col">timeOut</th>        
+        <th scope="col">assign_baby</th>        
+        <th scope='col'>ACTION</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for Sitter in attendance_list %}
+        
+      <tr>
+        <td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">{{ forloop.counter }} </td>
+        <td>{{ Sitter.S_name }}</td>
+        <td>{{ Sitter.timeIn }}</td>
+        <td>{{ Sitter.timeOut }}</td>
+        <td>{{ Sitter.assign_baby }}</td>
+
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
