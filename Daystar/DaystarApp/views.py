@@ -53,6 +53,7 @@ def logoutUser(request):
 def index(request):
     return render(request, 'DaystarApp/index.html')
 
+@login_required
 def home(request):
     return render(request, 'DaystarApp/home.html')
 
@@ -67,6 +68,7 @@ def Sitters(request):
 def babies(request):
     return render(request, 'DaystarApp/addbabies.html')
 
+@login_required
 def display_babies(request):
     allbabies = BabyReg.objects.all()
     return render(request, 'DaystarApp/display_babies.html', {'allbabies': allbabies}) #babies list 
@@ -179,7 +181,7 @@ def present_sitters(request):
     return render(request, 'DaystarApp/presentsitters.html', {'attendance_list': attendance_list})
 
 #Payment views
-#@login_required
+@login_required
 def addpayment(request):
     if request.method == 'POST':
         form = PaymentForm(request.POST)
@@ -191,7 +193,7 @@ def addpayment(request):
     
     return render(request, 'DaystarApp/addpayment.html', {'form': form})
 
-#@login_required
+@login_required
 def paymentlist(request):
     payment_list = Payment.objects.all()
     return render(request, 'DaystarApp/paymentlist.html', {'payment_list': payment_list})
@@ -212,7 +214,7 @@ def edit_payment(request,id):
     return render(request, 'DaystarApp/editpayment.html',{'form':form})
 
 
-
+@login_required
 def doll(request): #doll table
     dolls=Doll.objects.all()
     return render(request,'DaystarApp/doll.html',{'dolls':dolls}) 
