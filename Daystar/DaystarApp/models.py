@@ -62,8 +62,8 @@ class BabyAttendance(models.Model):
 class SitterAttendance(models.Model):
     S_name = models.ForeignKey(Sitter, on_delete=models.CASCADE,null=True, blank=True)
     assign_baby =  models.ForeignKey(BabyReg, on_delete=models.CASCADE,null=True, blank=True) 
-    timeIn = models.DateTimeField()
-    timeOut = models.DateTimeField()
+    timeIn = models.DateTimeField(auto_now_add=True)
+    timeOut = models.DateTimeField(null=True,blank=True)
    
     def __str__(self):
         return str(self.S_name)

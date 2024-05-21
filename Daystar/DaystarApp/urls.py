@@ -11,7 +11,7 @@ path('about/', views.about, name='about'),
 
 path('addbabies/', views.AddBabies, name='addbabies'),
 path('display_babies/', views.display_babies, name='display_babies'),
-path('delete/<int:BabyReg_id>/',views.delete_baby, name='delete_baby'),
+# path('delete/<int:BabyReg_id>/',views.delete_baby, name='delete_baby'),
 path('edit/<int:id>/', views.edit, name='edit'),
 
     #baby attendance
@@ -25,7 +25,7 @@ path('sitter_attendance/', views.sitter_attendance, name='sitter_attendance'),
 path('present_sitters/', views.present_sitters, name='present_sitters'),
 path('addsitters/', views.addsitters, name='addsitters'),
 path('allsitters/', views.allsitters, name='allsitters'),
-path('delete/<int:BabyReg_id>/',views.delete_baby, name='delete_baby'),
+#path('delete/<int:BabyReg_id>/',views.delete_baby, name='delete_baby'),
 path('edit_sitter/<int:id>/', views.edit_sitter, name='edit_sitter'),
 
     #login urls

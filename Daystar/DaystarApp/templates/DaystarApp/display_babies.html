@@ -40,15 +40,35 @@
     .action-links a:hover {
         text-decoration: underline; /* Underline on hover */
     }
+    
+  .btn-primary {
+    background-color: #6198a3; /* Blue color */
+    border-color: cyan;
+    color: white; /* Text color */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s; /* Smooth transition */
+  }
+
+  .btn-primary:hover {
+    background-color: #66c2ff; /* Lighter blue color on hover */
+    border-color: #66c2ff;
+  }
+  
+
 </style>
 <body>
 
 <h1>List of Babies Registered</h1>
 <div class="container-fluid">
+    <form method="GET" action="{% url 'display_babies' %}">
+        <input type="text" name="search" placeholder="Search by name or location" value="{{ request.GET.search }}">
+        <button type="submit">Search</button>
+    </form>
+
     <table class="table" style="width: 100%; border-collapse: collapse;">
         <thead>
             <tr>
-                <th>#</th>
+                <th>ID</th>
                 <th scope="col">B_name</th>
                 <th scope="col">Age</th>
                 <th scope="col">Gender</th>
@@ -75,14 +95,13 @@
                 <td>{{ Baby.fathers_phone }}</td>
                 <td>BB-0{{ Baby.B_number }}</td>
                 <td class="action-links">
-                    <a href="{% url 'edit' Baby.id %}">Edit</a>
+                    <a href="{% url 'edit' Baby.id %}"><i class="fas fa-edit"></i> Edit</a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
-
 </body>
 </html>
 {% endblock %}

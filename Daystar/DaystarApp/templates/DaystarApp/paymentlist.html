@@ -41,7 +41,7 @@
   <table class="table" style="width: 100%; border-collapse: collapse;">
       <thead>
           <tr>
-              <th>#</th>
+              <th>ID</th>
               <th scope="col">S_name</th>
               <th scope="col">Payment Type</th>
               <th scope="col">Payment Date</th>
@@ -60,7 +60,7 @@
               <td>{{ Payment.babies_assigned }}</td>
               <td>{{ Payment.amount }}</td>
               <td class="action-links">
-                <a href="{% url 'edit_payment' Payment.id %}">Edit</a>
+                <a href="{% url 'edit_payment' Payment.id %}"><i class="fas fa-edit"></i> Edit</a>
                
             </td>
           </tr>

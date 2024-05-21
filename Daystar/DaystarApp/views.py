@@ -6,9 +6,11 @@ from .forms import *
 #involving decorators to implement authentication
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -70,9 +72,15 @@ def babies(request):
 
 @login_required
 def display_babies(request):
-    allbabies = BabyReg.objects.all()
-    return render(request, 'DaystarApp/display_babies.html', {'allbabies': allbabies}) #babies list 
-
+    query = request.GET.get('search')
+    if query:
+        allbabies = BabyReg.objects.filter(
+            Q(B_name__icontains=query) | 
+            Q(location__icontains=query)
+        )
+    else:
+        allbabies = BabyReg.objects.all()
+    return render(request, 'DaystarApp/display_babies.html', {'allbabies': allbabies})
 
 def AddBabies(request):    
     getbabiesform  = BabyRegForm()
@@ -83,13 +91,13 @@ def AddBabies(request):
             print("form is not valid")
             print(BabiesForm)
             
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('display_babies'))
     return render(request, 'DaystarApp/addbabies.html', {'getbabiesform': getbabiesform})
 
-def delete_baby(request, BabyReg_id):
-    babies = BabyReg.objects.filter(id=BabyReg_id).delete()
-    redirect_url = reverse('home')
-    return HttpResponseRedirect(redirect_url)
+# def delete_baby(request, BabyReg_id):
+#     babies = BabyReg.objects.filter(id=BabyReg_id).delete()
+#     redirect_url = reverse('home')
+#     return HttpResponseRedirect(redirect_url)
 
 def edit(request,id):
     if request.method =='POST':
@@ -133,17 +141,20 @@ def allsitters(request):
     return render(request, 'DaystarApp/allsitters.html', {'allsitters': allsitters}) #sitters list 
 
 
-def addsitters(request):    
-    getsittersform = (SitterForm)
-    SittersForm =  SitterForm(request.POST)
+def addsitters(request):
     if request.method == 'POST':
-        if SittersForm .is_valid():
-            SittersForm .save()
-            print("form is not valid")
-            print(SittersForm )
-            
+        SittersForm = SitterForm(request.POST)
+        if SittersForm.is_valid():
+            SittersForm.save()
             return HttpResponseRedirect(reverse('home'))
-    return render(request, 'DaystarApp/addsitters.html', {'getsittersform': getsittersform})
+        else:
+            # Print errors to debug
+            print("Form is not valid")
+            print(SittersForm.errors)
+    else:
+        SittersForm = SitterForm()
+
+    return render(request, 'DaystarApp/addsitters.html', {'getsittersform': SittersForm})
 def delete_sitter(request, BabyReg_id):
     sitters = Sitter.objects.filter(id=BabyReg_id).delete()
     redirect_url = reverse('home')
@@ -220,7 +231,7 @@ def doll(request): #doll table
     return render(request,'DaystarApp/doll.html',{'dolls':dolls}) 
 
 
-# @login_required
+@login_required
 def issue_item(request,id):  #selling of dolls
     issued_item=Doll.objects.get(id=id) 
     sales_form=SalesrecordForm(request.POST)  
@@ -295,20 +306,19 @@ def trial(request):
     baby_attendance_today = BabyAttendance.objects.filter(timeIn__date=timezone.now().date())
     children_present = baby_attendance_today.count()
 
-
     babies_status = []
     for attendance in baby_attendance_today:
-        status = 'Checked In' if attendance.timeOut is None else 'Checked Out' #If attendance.timeOut is None, it means the baby has not been checked out yet, so the status is 'Checked In'.
-        #If attendance.timeOut has a value, it means the baby has been checked out, so the status is 'Checked Out'.
-
-        babies_status.append({   #This creates a dictionary for each attendance record and appends it to the babies_status list:
+        status = 'Checked In' if attendance.timeOut is None else 'Checked Out'
+        babies_status.append({
             'baby': attendance.B_name.B_name,
             'status': status,
             'timeIn': attendance.timeIn,
             'timeOut': attendance.timeOut,
         })
-        sitter_attendance_today = SitterAttendance.objects.filter(timeIn__date=timezone.now().date())
-        sitters_present = baby_attendance_today.count()
+
+    sitter_attendance_today = SitterAttendance.objects.filter(timeIn__date=timezone.now().date())
+    sitters_present = sitter_attendance_today.count()
+
     sitters_status = []
     for attendance in sitter_attendance_today:
         status = 'Checked In' if attendance.timeOut is None else 'Checked Out'
@@ -323,10 +333,11 @@ def trial(request):
         'children_present': children_present,
         'babies_status': babies_status,
         'sitters_status': sitters_status,
+        'sitters_present': sitters_present,
     }
     
-   
     return render(request, 'DaystarApp/trial.html', context)
+
 def baby_checkin(request):
     if request.method == 'POST':
         form = BabyAttendanceForm(request.POST)

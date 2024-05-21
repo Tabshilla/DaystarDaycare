@@ -20,7 +20,7 @@ class SitterForm(ModelForm):
         model = Sitter
         fields = '__all__'
         widgets={
-            'dob': forms.DateTimeInput(attrs={'type': 'date'}),
+            'dob': forms.DateInput(attrs={'type': 'date'}),
         }
 
 class SitterAttendanceForm(ModelForm):

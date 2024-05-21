@@ -1,6 +1,59 @@
 {% extends "DaystarApp/base.html" %}
 {% block content  %}
 
+<style>
+  h1 {
+      color: #2c3e50; /* A professional blue-gray color */
+      text-align: center;
+      font-family: 'Arial', sans-serif; /* A clean and professional font */
+      margin-bottom: 20px;
+  }
+
+  .table th, .table td {
+      padding: 12px; /* Adjust the padding for better readability */
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+  }
+
+  .table thead th {
+      background-color: #34495e; /* A dark blue-gray background color */
+      color: white; /* White text color for contrast */
+      font-weight: bold;
+      text-transform: uppercase; /* Uppercase for a professional look */
+  }
+
+  .table tbody tr:nth-child(even) {
+      background-color: #f2f2f2; /* Light gray background for alternate rows */
+  }
+
+  .table tbody tr:hover {
+      background-color: #e0e0e0; /* Slightly darker gray on hover */
+  }
+
+  .action-links a {
+      margin-right: 10px; /* Add space between action links */
+      color: #2980b9; /* A professional blue color */
+  }
+
+  .action-links a:hover {
+      text-decoration: underline; /* Underline on hover for clarity */
+  }
+  
+  .btn-primary {
+    background-color: #6198a3; /* Blue color */
+    border-color: cyan;
+    color: white; /* Text color */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s; /* Smooth transition */
+  }
+
+  .btn-primary:hover {
+    background-color: #66c2ff; /* Lighter blue color on hover */
+    border-color: #66c2ff;
+  }
+
+</style>
+
 
 <h1 style="color: blue; text-align: center;">LIST OF DOLLS</h1>
 <div class="container-fluid">
@@ -8,13 +61,13 @@
   <table class="table" style="width: 100%; border-collapse: collapse;">
     <thead style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd; background-color: #f2f2f2; font-weight: bold;">
       <tr>
-        <th>#</th>
+        <th>ID</th>
         <th scope="col">c_doll</th>
         <th scope="col">doll_name</th>
         <th scope="col">doll_number</th>
         <th scope='col'>quantity</th>
-        <th scope='col'>issued_quantity</th>
-        <th scope='col'>received_quantity</th>
+        <th scope='col'>issued<br>_quantity</th>
+        <th scope='col'>received<br>_quantity</th>
         <th scope='col'>unit_price</th>
         <th scope='col'>date</th>
         <th scope='col'>ACTION</th>

@@ -39,6 +39,20 @@
   .action-links a:hover {
       text-decoration: underline; /* Underline on hover for clarity */
   }
+  
+  .btn-primary {
+    background-color: #6198a3; /* Blue color */
+    border-color: cyan;
+    color: white; /* Text color */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s; /* Smooth transition */
+  }
+
+  .btn-primary:hover {
+    background-color: #66c2ff; /* Lighter blue color on hover */
+    border-color: #66c2ff;
+  }
+
 </style>
 </head>
 <body>
@@ -48,7 +62,7 @@
   <table class="table" style="width: 100%; border-collapse: collapse;">
       <thead>
           <tr>
-              <th>#</th>
+              <th>ID</th>
               <th scope="col">S_name</th>
               <th scope="col">Gender</th>
               <th scope="col">DOB</th>
@@ -76,10 +90,12 @@
               <td>{{ Sitter.religion }}</td>
               <td>{{ Sitter.NIN }}</td>
               <td>{{ Sitter.education_level }}</td>
-              <td>{{ Sitter.sitter_number }}</td>
+              <td>SS-0{{ Sitter.sitter_number }}</td>
               <td>{{ Sitter.contact }}</td>
+             
               <td class="action-links">
-                  <a href="{% url 'edit_sitter' Sitter.id %}">Edit</a>
+                  <a href="{% url 'edit_sitter' Sitter.id %}"><i class="fas fa-edit"></i> Edit</a>
+                </td>Edit</a>
                  
               </td>
           </tr>
